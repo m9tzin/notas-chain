@@ -1,0 +1,57 @@
+{
+    "editor.tokenColorCustomizations": {
+        "textMateRules": [
+            {
+                "name": "Functions",
+                "scope": [
+                    "entity.name.function",
+                    "meta.function-call",
+                    "variable.function",
+                    "support.function",
+                    "keyword.other.special-method"
+                ],
+                "settings": {
+                    "fontStyle": "bold"
+                }
+            },
+            {
+                "name": "Go Functions",
+                "scope": [
+                    "entity.name.function.go",
+                    "support.function.go"
+                ],
+                "settings": {
+                    "fontStyle": "bold"
+                }
+            },
+            {
+                "name": "Method Calls",
+                "scope": [
+                    "meta.method-call",
+                    "variable.other.object.property"
+                ],
+                "settings": {
+                    "fontStyle": "bold"
+                }
+            },
+            {
+                "name": "Go Method Receivers",
+                "scope": [
+                    "variable.other.receiver.go"
+                ],
+                "settings": {
+                    "fontStyle": "bold"
+                }
+            },
+            {
+                "name": "Go Package Functions",
+                "scope": [
+                    "support.function.builtin.go"
+                ],
+                "settings": {
+                    "fontStyle": "bold"
+                }
+            }
+        ]
+    }
+}
