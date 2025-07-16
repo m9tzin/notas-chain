@@ -53,6 +53,42 @@ func (c *NotaContract) ReadNota(ctx contractapi.TransactionContextInterface, id 
 	return &nota, nil
 }
 
+func (s *NotaContract) UpdateNota(ctx contractapi.TransactionContextInterface, id string, aluno string, disciplina string, nota float64) error {
+	notaJSON, err := ctx.GetStub().GetState(id)
+	if err != nil {
+		return fmt.Errorf("erro ao buscar nota: %v", err)
+	}
+	if notaJSON == nil {
+		return fmt.Errorf("nota com ID %s não encontrada", id)
+	}
+
+	notaAtualizada := Nota{
+		ID:         id,
+		Aluno:      aluno,
+		Disciplina: disciplina,
+		Nota:       nota,
+	}
+
+	notaBytes, err := json.Marshal(notaAtualizada)
+	if err != nil {
+		return err
+	}
+
+	return ctx.GetStub().PutState(id, notaBytes)
+}
+
+func (s *NotaContract) DeleteNota(ctx contractapi.TransactionContextInterface, id string) error {
+	exists, err := s.NotaExists(ctx, id)
+	if err != nil {
+		return err
+	}
+	if !exists {
+		return fmt.Errorf("nota com ID %s não encontrada", id)
+	}
+
+	return ctx.GetStub().DelState(id)
+}
+
 func (c *NotaContract) NotaExists(ctx contractapi.TransactionContextInterface, id string) (bool, error) {
 	data, err := ctx.GetStub().GetState(id)
 	if err != nil {
