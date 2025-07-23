@@ -9,6 +9,7 @@ import (
 	"path/filepath"
 
 	"github.com/gorilla/mux"
+	"github.com/hyperledger/fabric-sdk-go/pkg/core/config"
 	"github.com/hyperledger/fabric-sdk-go/pkg/gateway"
 )
 
@@ -37,7 +38,7 @@ func getContract() (*gateway.Contract, error) {
 	}
 
 	gw, err := gateway.Connect(
-		gateway.WithConfig(gateway.ConfigFromPath(filepath.Clean(ccpPath))),
+		gateway.WithConfig(config.FromFile(filepath.Clean(ccpPath))),
 		gateway.WithIdentity(wallet, "appUser"),
 	)
 	if err != nil {
@@ -71,11 +72,8 @@ func registrarNotaHandler(w http.ResponseWriter, r *http.Request) {
 	_, err = contract.SubmitTransaction("RegistrarNota",
 		nota.ID,
 		nota.AlunoID,
-		nota.NomeAluno,
 		nota.Disciplina,
-		nota.Avaliacao,
 		fmt.Sprintf("%.2f", nota.Nota),
-		nota.Professor,
 	)
 	if err != nil {
 		http.Error(w, fmt.Sprintf("Erro ao registrar nota: %v", err), http.StatusInternalServerError)
