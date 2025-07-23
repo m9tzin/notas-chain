@@ -21,7 +21,7 @@ A estrutura da nota é composta pelos seguintes campos:
 - **Timestamp**: Momento exato do registro ou atualização da nota.
 
 ## Exemplo de objeto Nota em JSON:
-
+```json
    {
      "ID": "nota1",
      "AlunoID": "aluno123",
@@ -30,6 +30,7 @@ A estrutura da nota é composta pelos seguintes campos:
      "Data": "2024-06-01",
      "Timestamp": "2024-06-01T14:30:00Z"
    }
+   ```
 
 ## Como usar
 1. Clone o repositório.
