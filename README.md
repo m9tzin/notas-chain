@@ -20,6 +20,19 @@ A estrutura da nota é composta pelos seguintes campos:
 - **Data**: Data em que a nota foi registrada.
 - **Timestamp**: Momento exato do registro ou atualização da nota.
 
-Exemplo de objeto Nota em JSON:
+## Exemplo de objeto Nota em JSON:
 
+   {
+     "ID": "nota1",
+     "AlunoID": "aluno123",
+     "Disciplina": "Matemática",
+     "Nota": 8.5,
+     "Data": "2024-06-01",
+     "Timestamp": "2024-06-01T14:30:00Z"
+   }
 
+## Como usar
+1. Clone o repositório.
+2. Instale as dependências com `go mod tidy`.
+3. Importe o chaincode para sua rede Hyperledger Fabric.
+4. Use os comandos apropriados para invocar as funções do chaincode.
