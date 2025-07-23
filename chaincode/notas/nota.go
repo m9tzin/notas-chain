@@ -23,16 +23,17 @@ type NotaContract struct {
 	contractapi.Contract
 }
 
+/* InitLedger é a função que inicializa o ledger com as notas */
 func (s *NotaContract) InitLedger(ctx contractapi.TransactionContextInterface) error {
 	notas := []Nota{
 		{ID: "1", AlunoID: "1", Disciplina: "Matemática", Nota: 8.5, Data: "2025-11-11", Timestamp: time.Now().Format(time.RFC3339)},
 	}
 	for _, nota := range notas {
-		bytes, err := json.Marshal(nota)
+		notaJSON, err := json.Marshal(nota)
 		if err != nil {
 			return err
 		}
-		err = ctx.GetStub().PutState(nota.ID, bytes)
+		err = ctx.GetStub().PutState(nota.ID, notaJSON)
 		if err != nil {
 			return err
 		}
